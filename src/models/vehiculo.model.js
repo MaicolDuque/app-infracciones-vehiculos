@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize, db) => {
   });
   // Vehiculo.belongsTo(db.tipo_vehiculo);
 
-  db.marcas.hasMany(Vehiculo, {
+  db.marca.hasMany(Vehiculo, {
     foreignKey: {
       name: 'id_marca',
       type: Sequelize.INTEGER
