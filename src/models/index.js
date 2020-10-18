@@ -11,11 +11,11 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tipo_vehiculo    = require('./tipo-vehiculo.model')(sequelize, Sequelize);
-db.tipo_propietario = require('./tipo-propietario.model')(sequelize, Sequelize);
-db.tipo_sancion     = require('./tipo-sancion.model')(sequelize, Sequelize);
-db.marca            = require('./marca.model')(sequelize, Sequelize);
 db.propietario      = require('./propietario.model')(sequelize, Sequelize, db);
+db.tipo_vehiculo    = require('./tipo-vehiculo.model')(sequelize, Sequelize);
+db.tipo_propietario = require('./tipo-propietario.model')(sequelize, Sequelize, db);
+db.tipo_sancion     = require('./tipo-sancion.model')(sequelize, Sequelize, db);
+db.marca            = require('./marca.model')(sequelize, Sequelize);
 db.vehiculo         = require('./vehiculo.model')(sequelize, Sequelize, db);
 db.infraccion       = require('./infraccion.model')(sequelize, Sequelize, db);
 

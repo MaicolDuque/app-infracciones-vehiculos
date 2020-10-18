@@ -12,23 +12,19 @@ module.exports = (sequelize, Sequelize, db) => {
     tableName: 'infracciones'
   });
 
-  db.tipo_sancion.hasMany(Infraccion, {
+  Infraccion.belongsTo(db.tipo_sancion, {
     foreignKey: {
       name: 'id_tipo',
       type: Sequelize.INTEGER
-    },
-    targetKey: 'id'
+    }
   });
-  // Infraccion.belongsTo(db.tipo_sancion);
 
-  db.vehiculo.hasMany(Infraccion, {
+  Infraccion.belongsTo(db.vehiculo, {
     foreignKey: {
       name: 'placa_vehiculo',
       type: Sequelize.STRING
-    },
-    targetKey: 'placa'
+    }
   });
-  // Infraccion.belongsTo(db.vehiculo);
 
   return Infraccion;
 };

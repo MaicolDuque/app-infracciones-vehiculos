@@ -10,29 +10,33 @@ module.exports = (sequelize, Sequelize, db) => {
   });
 
   // Relationships - one to many
-  db.tipo_vehiculo.hasMany(Vehiculo, {
+  // db.tipo_vehiculo.hasMany(Vehiculo, {
+  //   foreignKey: {
+  //     name: 'id_tipo',
+  //     type: Sequelize.INTEGER
+  //   }
+  // });
+
+  Vehiculo.belongsTo(db.tipo_vehiculo, {
     foreignKey: {
       name: 'id_tipo',
       type: Sequelize.INTEGER
     }
   });
-  // Vehiculo.belongsTo(db.tipo_vehiculo);
 
-  db.marca.hasMany(Vehiculo, {
+  Vehiculo.belongsTo(db.marca, {
     foreignKey: {
       name: 'id_marca',
       type: Sequelize.INTEGER
     }
   });
-  // Vehiculo.belongsTo(db.marcas);
 
-  db.propietario.hasMany(Vehiculo, {
+  Vehiculo.belongsTo(db.propietario, {
     foreignKey: {
       name: 'id_propietario',
       type: Sequelize.INTEGER
     }
   });
-  // Vehiculo.belongsTo(db.propietario);
 
   return Vehiculo;
 };

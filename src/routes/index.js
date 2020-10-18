@@ -3,12 +3,18 @@ const tipoVehiculos = require('../controllers/tipo-vehiculos')
 const tipoPropietarios = require('../controllers/tipo-propietario')
 const tipoSanciones = require('../controllers/tipo-sancion')
 const propietarios = require('../controllers/propietario')
+const marcas = require('../controllers/marca')
+const vehiculos = require('../controllers/vehiculos')
+const infracciones = require('../controllers/infracciones')
 
 module.exports = (app) => {
   app.use("/tipo-vehiculos", tipoVehiculos);
   app.use("/tipo-propietarios", tipoPropietarios);
   app.use("/tipo-sanciones", tipoSanciones);
   app.use("/propietarios", propietarios);
+  app.use("/marcas", marcas);
+  app.use("/vehiculos", vehiculos);
+  app.use("/infracciones", infracciones);
 
   app.get('/test', (req, res ) => {
     res.render('index', {

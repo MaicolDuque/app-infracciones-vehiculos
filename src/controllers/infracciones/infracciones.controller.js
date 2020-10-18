@@ -1,5 +1,5 @@
 const db = require("../../models");
-const TipoVehiculos = db.tipo_vehiculo;
+const Infraccion = db.infraccion;
 const Op = db.Sequelize.Op;
 
 function handleError(res, statusCode) {
@@ -8,13 +8,19 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  TipoVehiculos.findAll()
+  Infraccion.findAll({
+    include: [
+      { model: db.tipo_sancion },
+      { model: db.vehiculo }
+    ],
+    attributes: ['id', 'fecha']
+  })
   .then( data => res.send(data))
   .catch(handleError(res))
 }
 
 function create(req, res){
-  TipoVehiculos.create(req.body)
+  Infraccion.create(req.body)
     .then(data => {
       res.send(data);
     })

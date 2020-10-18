@@ -14,13 +14,18 @@ module.exports = (sequelize, Sequelize, db) => {
   });
 
   //Relationships - one to mane
-  db.tipo_propietario.hasMany(Propietario, {
-    foreignKey: { 
-      name: 'id_tipo',
-      type: Sequelize.INTEGER
-    }
-  });
-  // Propietario.belongsTo(db.tipo_propietario);
+  // db.tipo_propietario.hasMany(Propietario, {
+  //   foreignKey: { 
+  //     name: 'id_tipo',
+  //     type: Sequelize.INTEGER
+  //   }
+  // });
+  // Propietario.belongsTo(db.tipo_propietario, {
+  //   foreignKey: { 
+  //     name: 'id_tipo',
+  //     type: Sequelize.INTEGER
+  //   }
+  // });
 
 
   return Propietario;
