@@ -8,14 +8,14 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  Infraccion.findAll({
+  return Infraccion.findAll({
     include: [
       { model: db.tipo_sancion },
       { model: db.vehiculo }
     ],
-    attributes: ['id', 'fecha']
+    attributes: ['id', 'fecha', 'descripcion'],
   })
-  .then( data => res.send(data))
+  .then( data => data )  //res.send(data)
   .catch(handleError(res))
 }
 
@@ -27,7 +27,17 @@ function create(req, res){
     .catch(handleError(res));
 }
 
+async function index(req, res){
+  const infracciones = await show();
+  return res.render('index', {
+        titulo: 'Inicio',
+        infracciones: infracciones,
+        session: JSON.stringify(req.session)
+      })
+}
+
 module.exports = {
   show,
-  create
+  create,
+  index
 }

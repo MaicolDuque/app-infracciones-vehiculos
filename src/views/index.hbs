@@ -1,4 +1,26 @@
-
 {{>header}}
-  <h1>Preubas!!!!!!!!!!!!! {{titulo}}</h1>
+<h1>Infracciones</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Tipo Sanción</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each infracciones}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.fecha}}</td>
+      <td>{{this.vehiculo.placa}}</td>
+      <td>{{this.descripcion}}</td>
+      <td>{{this.tipo_sancion.nombre}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
 {{>footer}}

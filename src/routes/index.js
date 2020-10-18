@@ -14,14 +14,16 @@ module.exports = (app) => {
   app.use("/propietarios", propietarios);
   app.use("/marcas", marcas);
   app.use("/vehiculos", vehiculos);
-  app.use("/infracciones", infracciones);
+  app.use("/", infracciones);
 
-  app.get('/test', (req, res ) => {
-    res.render('index', {
-      titulo: 'Inicio',
-      session: JSON.stringify(req.session)
-    })
-  });
+  // paginas
+  // app.get('/', (req, res ) => {
+  //   res.render('index', {
+  //     titulo: 'Inicio',
+  //     infracciones: ["uno", "dos"],
+  //     session: JSON.stringify(req.session)
+  //   })
+  // });
 
   // app.get('*',(req,res)=> {
   //   res.render('error', {
