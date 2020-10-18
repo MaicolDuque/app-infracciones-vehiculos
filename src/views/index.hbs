@@ -2,12 +2,13 @@
 <h1>Infracciones</h1>
 <table class="table table-hover">
   <thead>
-    <tr>
+    <tr style="text-align: center;">
       <th scope="col">ID</th>
       <th scope="col">Fecha</th>
       <th scope="col">Placa</th>
       <th scope="col">Descripción</th>
       <th scope="col">Tipo Sanción</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -18,9 +19,31 @@
       <td>{{this.vehiculo.placa}}</td>
       <td>{{this.descripcion}}</td>
       <td>{{this.tipo_sancion.nombre}}</td>
+      <td>
+        <div style="text-align: center;">
+          <a href="/infracciones/editar/{{this.id}}"> <i style="color: #dbdb19" class="fas fa-edit"></i> </a>
+          <a onclick="eliminar({{this.id}})"> <i style="color: #e70909; cursor: pointer" class="fas fa-trash-alt"></i>
+          </a>
+        </div>
+      </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
 
+<script>
+  function eliminar(id) {
+    const resp = confirm("¿Estás seguro que deseas eliminar la infracción?");
+    if (resp) {
+      fetch('/infracciones/' + id, { method: 'DELETE' })
+        .then(res => {
+          alert('Infracción eliminadad correctamente')
+          location.reload();
+        })
+        .catch( err => console.error("Error al eliminar infracción: "+err) )
+    } else {
+      console.log("no")
+    }
+  }
+</script>
 {{>footer}}

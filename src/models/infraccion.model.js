@@ -1,3 +1,6 @@
+const { format } = require('date-fns')
+
+
 module.exports = (sequelize, Sequelize, db) => {
   const Infraccion = sequelize.define("infraccion", {
     id: {
@@ -11,7 +14,10 @@ module.exports = (sequelize, Sequelize, db) => {
     },
 
     fecha: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      get() {
+        return format(this.getDataValue('fecha'), 'yyyy-MM-dd');
+      }
     }
   }, {
     tableName: 'infracciones'
