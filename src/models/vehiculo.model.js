@@ -1,3 +1,5 @@
+const { format } = require("date-fns");
+
 module.exports = (sequelize, Sequelize, db) => {
   const Vehiculo = sequelize.define("vehiculo", {
     placa: {
@@ -5,7 +7,10 @@ module.exports = (sequelize, Sequelize, db) => {
       primaryKey: true
     },
     fecha_matricula: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      get() {
+        return format(this.getDataValue('fecha_matricula'), 'yyyy-MM-dd');
+      }
     }
   });
 

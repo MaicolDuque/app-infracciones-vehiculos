@@ -8,20 +8,33 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  Propietario.findAll()
-  .then( data => res.send(data))
+  return Propietario.findAll({
+    include: [
+      { model: db.tipo_propietario }
+    ],
+    attributes: ['id', 'nombre', 'direccion']
+  })
+  .then( data => data )  //res.send(data)
   .catch(handleError(res))
 }
 
 function create(req, res){
-  Propietario.create(req.body)
+  return Propietario.create(req.body)
     .then(data => {
       res.send(data);
     })
     .catch(handleError(res));
 }
 
+async function viewPropietarios(req, res){
+  const propietarios = await show(req, res);
+  return res.render('propietarios', {
+    propietarios
+  });
+}
+
 module.exports = {
   show,
-  create
+  create,
+  viewPropietarios
 }

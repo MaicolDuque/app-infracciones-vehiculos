@@ -23,9 +23,7 @@ function show(req, res) {
 
 function create(req, res) {
   Infraccion.create(req.body)
-    .then(data => {
-      res.send(data);
-    })
+    .then(data =>  res.send(data) ) // res.send(data)
     .catch(handleError(res));
 }
 
@@ -79,6 +77,15 @@ async function viewEdit(req, res) {
   })
 }
 
+async function viewAgregar(req, res) {
+  const vehiculos = await findAllVehiculos(req, res);
+  const sanciones = await findAllSanciones(req, res);
+  res.render('agregar-infraccion', {
+    vehiculos,
+    sanciones
+  })
+}
+
 async function index(req, res) {
   const infracciones = await show();
   return res.render('index', {
@@ -93,6 +100,7 @@ module.exports = {
   create,
   index,
   viewEdit,
+  viewAgregar,
   destroy,
   update
 }

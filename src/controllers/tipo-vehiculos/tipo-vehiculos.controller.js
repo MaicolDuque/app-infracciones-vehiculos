@@ -8,20 +8,29 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  TipoVehiculos.findAll()
-  .then( data => res.send(data))
+  return TipoVehiculos.findAll()
+  .then( data => data ) //res.send(data)
   .catch(handleError(res))
 }
 
 function create(req, res){
-  TipoVehiculos.create(req.body)
+  return TipoVehiculos.create(req.body)
     .then(data => {
       res.send(data);
     })
     .catch(handleError(res));
 }
 
+async function viewTipoVehiculos(req, res){
+  const tipos = await show(req, res);
+  console.log(tipos)
+  return res.render('tipo-vehiculos', {
+    tipos
+  });
+}
+
 module.exports = {
   show,
-  create
+  create,
+  viewTipoVehiculos
 }

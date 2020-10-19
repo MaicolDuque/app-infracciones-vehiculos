@@ -1,0 +1,22 @@
+{{>header}}
+<div style="display: flex; justify-content: space-between;">
+  <h1>Vehiculos</h1>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr style="text-align: center;">
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each tipos}}
+    <tr>
+      <th>{{this.id}}</th>
+      <td>{{this.nombre}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{>footer}}

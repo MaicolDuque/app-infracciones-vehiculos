@@ -1,0 +1,26 @@
+{{>header}}
+<div style="display: flex; justify-content: space-between;">
+  <h1>Tipos de usuarios</h1>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr style="text-align: center;">
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Tipo usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each propietarios}}
+    <tr>
+      <th>{{this.id}}</th>
+      <td>{{this.nombre}}</td>
+      <td>{{this.direccion}}</td>
+      <td>{{this.tipo_propietario.nombre}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{>footer}}

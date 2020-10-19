@@ -20,13 +20,12 @@ module.exports = (sequelize, Sequelize, db) => {
   //     type: Sequelize.INTEGER
   //   }
   // });
-  // Propietario.belongsTo(db.tipo_propietario, {
-  //   foreignKey: { 
-  //     name: 'id_tipo',
-  //     type: Sequelize.INTEGER
-  //   }
-  // });
-
+  Propietario.belongsTo(db.tipo_propietario, {
+    foreignKey: { 
+      name: 'id_tipo',
+      type: Sequelize.INTEGER
+    }
+  });
 
   return Propietario;
 };

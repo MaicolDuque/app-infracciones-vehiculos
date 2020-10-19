@@ -1,0 +1,28 @@
+{{>header}}
+<div style="display: flex; justify-content: space-between;">
+  <h1>Vehiculos</h1>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr style="text-align: center;">
+      <th scope="col">Tipo vehiculo</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Fecha Matricula</th>
+      <th scope="col">Propietario</th>
+      <th scope="col">Marca</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each vehiculos}}
+    <tr>
+      <th>{{this.tipo_vehiculo.nombre}}</th>
+      <td>{{this.placa}}</td>
+      <td>{{this.fecha_matricula}}</td>
+      <td>{{this.propietario.nombre}}</td>
+      <td>{{this.marca.nombre}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{>footer}}

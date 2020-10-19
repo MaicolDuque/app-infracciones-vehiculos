@@ -2,12 +2,10 @@
 <h1>Editar infracción</h1>
 
 <form onsubmit="return editarInfraccion(this);" id="form">
-  <input type="hidden" name="id" id="id" value={{info.id}}>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="placa_vehiculo">Placa</label>
       <select id="placa_vehiculo" name="placa_vehiculo" class="form-control">
-        <option value={{info.placa_vehiculo}}>{{info.placa_vehiculo}}</option>
         {{#each vehiculos }}
         <option>{{this.placa}}</option>
         {{/each}}
@@ -18,7 +16,7 @@
     <div class="form-group col-md-6">
       <label for="descripcion">Descripción</label>
       <textarea class="form-control " id="descripcion" placeholder="Ingrese descripción de la infracción"
-        cols="90">{{info.descripcion}}</textarea>
+        cols="90"></textarea>
       <div class="invalid-feedback">
         Please enter a message in the textarea.
       </div>
@@ -27,7 +25,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fecha">Fecha</label>
-      <input type="date" class="form-control" id="fecha" value="{{info.fecha}}">
+      <input type="date" class="form-control" id="fecha" value="">
     </div>
   </div>
 
@@ -35,40 +33,38 @@
     <div class="form-group col-md-6">
       <label for="tipo_sancion">Tipo sanción</label>
       <select id="id_tipo" class="form-control">
-        <option value={{info.tipo_sancion.id}}>{{info.tipo_sancion.nombre}}</option>
         {{#each sanciones }}
         <option value={{this.id}}>{{this.nombre}}</option>
         {{/each}}
       </select>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Actualizar</button>
+  <button type="submit" class="btn btn-primary">Agregar</button>
 </form>
 
 <script type="text/javascript">
   function editarInfraccion(event) {
-    const id = document.querySelector('#id').value
     const placa_vehiculo = document.querySelector('#placa_vehiculo').value
     const descripcion = document.querySelector('#descripcion').value
     const fecha = document.querySelector('#fecha').value
     const id_tipo = document.querySelector('#id_tipo').value
     const body = { placa_vehiculo, descripcion, fecha, id_tipo }
-
     const tieneErrores = validarDatos(body)
     if(!tieneErrores){
-      fetch('/infracciones/' + id, {
-        method: 'PUT', 
+      fetch('/infracciones', {
+        method: 'POST', 
         headers: { 'Content-Type': 'application/json' }, 
         body: JSON.stringify(body)
       })
         .then(res => {
-          alert('Infracción actualizada correctamente')
+          alert('Infracción agregada correctamente')
           window.location = "/";
         })
         .catch(err => console.error("Error al eliminar infracción: " + err))
     }else{
       alert("Faltan campos por llenar...")
     }
+
     return false;
   }
 

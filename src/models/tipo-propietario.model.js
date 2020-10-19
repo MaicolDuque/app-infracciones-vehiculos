@@ -11,12 +11,12 @@ module.exports = (sequelize, Sequelize, db) => {
   });
 
   //Relationships - one to mane
-  TipoPropietario.hasMany(db.propietario, {
-    foreignKey: { 
-      name: 'id_tipo',
-      type: Sequelize.INTEGER
-    }
-  });
+  // TipoPropietario.hasMany(db.propietario, {
+  //   foreignKey: { 
+  //     name: 'id_tipo',
+  //     type: Sequelize.INTEGER
+  //   }
+  // });
 
   return TipoPropietario;
 };

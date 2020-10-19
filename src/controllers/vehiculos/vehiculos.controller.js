@@ -1,7 +1,6 @@
 const db = require("../../models");
 const Vehiculo = db.vehiculo;
 const Op = db.Sequelize.Op;
-const Marca = db.marca;
 
 function handleError(res, statusCode) {
   const statusCodeLocal = statusCode || 500;
@@ -9,7 +8,6 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  console.log(db.marca)
   return Vehiculo.findAll({
     include: [
       { model: db.tipo_vehiculo },
@@ -18,8 +16,15 @@ function show(req, res){
     ],
     attributes: ['placa', 'fecha_matricula']
   })
-  .then( data => res.send(data))
+  .then( data => data )  //res.send(data)
   .catch(handleError(res))
+}
+
+async function viewVehiculos(req, res){
+  const vehiculos = await show(req, res);
+  return res.render('vehiculos', {
+    vehiculos
+  });
 }
 
 function create(req, res){
@@ -32,5 +37,6 @@ function create(req, res){
 
 module.exports = {
   show,
-  create
+  create,
+  viewVehiculos
 }

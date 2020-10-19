@@ -8,20 +8,28 @@ function handleError(res, statusCode) {
 }
 
 function show(req, res){
-  Marca.findAll()
-  .then( data => res.send(data))
+  return Marca.findAll()
+  .then( data => data ) //res.send(data)
   .catch(handleError(res))
 }
 
 function create(req, res){
-  Marca.create(req.body)
+  return Marca.create(req.body)
     .then(data => {
       res.send(data);
     })
     .catch(handleError(res));
 }
 
+async function viewMarcas(req, res){
+  const marcas = await show(req, res);
+  return res.render('marcas', {
+    marcas
+  });
+}
+
 module.exports = {
   show,
-  create
+  create,
+  viewMarcas
 }
