@@ -1,0 +1,15 @@
+.boton-agregar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size:1.3em
+}
+
+.content-title-infracciones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color:#03763f;
+}
